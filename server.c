@@ -68,7 +68,11 @@ static void *client_thread1(void *arg)
 		printf("recv ret is %d,buf is %s\r\n",ret,clientData.buf);
 		for(i=0; i<clientNum; i++)
 		{
-			printf("%d\r\n",clients[i]->clientSocket);
+			ret = send(clientData.clientSocket, "has recve", 10, 0);
+			if (ret < 0) {
+	 			perror("send error\r\n");
+	 			exit(-1);
+ 			}
 		}
 	}
 	
